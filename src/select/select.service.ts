@@ -15,4 +15,11 @@ export class SelectService {
         }
         return await SelectModel.create({userId, fieldId, enum: eNum})
     }
+
+    async delete(userId, fieldId) {
+        if (!userId || !fieldId) {
+            throw new BadRequestException('Указаны не все поля')
+        }
+        await SelectModel.destroy({where: {userId, fieldId}})
+    }
 }

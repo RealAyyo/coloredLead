@@ -1,4 +1,4 @@
-import {BadGatewayException, Body, Controller, Post} from '@nestjs/common';
+import {BadGatewayException, Body, Controller, Delete, Get, Param, Post} from '@nestjs/common';
 import {AppService} from './app.service';
 import {HttpService} from "@nestjs/axios";
 import {ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
@@ -20,21 +20,21 @@ export class AppController {
 
     @ApiOperation({summary: "Информация об одном поле"})
     @ApiResponse({status: 200, type: SelectModel})
-    @Post()
+    @Post('field')
     fieldById(@Body() {userId, type, fieldId}) {
         return this.appService.fieldById(userId, type, fieldId)
     }
 
     @ApiOperation({summary: "Получить данные о полях пользователя"})
     @ApiResponse({status: 200, type: UserModel})
-    @Post('/user')
-    userInfo(@Body() {userId}) {
+    @Get(':id')
+    userInfo(@Param('id') {userId}) {
         return this.userService.userInfo(userId)
     }
 
     @ApiOperation({summary: "Сохранить / изменить поля"})
     @ApiResponse({status: 200, type: TagModel})
-    @Post('/save')
+    @Post()
     saveField(@Body() {userId, fieldId, type, term, value, color, eNum}) {
         try {
             return this.appService.saveField(userId, fieldId, type, term, value, color, eNum)
@@ -43,5 +43,11 @@ export class AppController {
         }
     }
 
+    @ApiOperation({summary: "Сохранить / изменить поля"})
+    @ApiResponse({status: 200, type: TagModel})
+    @Delete('/save')
+    deleteField(){
+
+    }
 
 }
