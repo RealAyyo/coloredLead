@@ -17,4 +17,11 @@ export class TextService {
         }
         return await TextModel.create({userId, fieldId, term, value, color})
     }
+
+    async deleteText(userId, fieldId) {
+        if (!userId || !fieldId) {
+            throw new BadRequestException('Указаны не все поля')
+        }
+        await TextModel.destroy({where: {userId, fieldId}})
+    }
 }

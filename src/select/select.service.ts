@@ -16,7 +16,7 @@ export class SelectService {
         return await SelectModel.create({userId, fieldId, enum: eNum})
     }
 
-    async delete(userId, fieldId) {
+    async deleteSelect(userId, fieldId) {
         if (!userId || !fieldId) {
             throw new BadRequestException('Указаны не все поля')
         }

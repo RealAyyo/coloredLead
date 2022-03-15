@@ -19,4 +19,11 @@ export class NumberService {
         return await NumberModel.create({userId, fieldId, term, value, color})
     }
 
+    async deleteNumber(userId, fieldId) {
+        if (!userId || !fieldId) {
+            throw new BadRequestException('Указаны не все поля')
+        }
+        await NumberModel.destroy({where: {userId, fieldId}})
+    }
+
 }

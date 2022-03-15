@@ -45,9 +45,9 @@ export class AppController {
 
     @ApiOperation({summary: "Сохранить / изменить поля"})
     @ApiResponse({status: 200, type: TagModel})
-    @Delete('/save')
-    deleteField(){
-
+    @Delete('')
+    deleteField(@Body() {data}){
+        return this.appService.deleteField(data)
     }
 
 }

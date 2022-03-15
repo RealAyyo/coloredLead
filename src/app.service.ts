@@ -73,7 +73,20 @@ export class AppService {
         }
     }
 
-
+    async deleteField(data){
+        switch (data.type) {
+            case 'select':
+                return await this.selectService.deleteSelect(data.userId, data.fieldId)
+            case 'text':
+                return await this.textService.deleteText(data.userId, data.fieldId)
+            case 'number':
+                return await this.numberService.deleteNumber(data.userId, data.fieldId)
+            case 'tag':
+                return await this.tagService.deleteTag(data.userId, data.fieldId)
+            default:
+                return 'Укажите корректный поля'
+        }
+    }
 
 
 

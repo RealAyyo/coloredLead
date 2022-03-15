@@ -1,5 +1,6 @@
 import {BadRequestException, Injectable} from '@nestjs/common';
 import {TagModel} from "./tag.model";
+import {NumberModel} from "../number/number.model";
 
 @Injectable()
 export class TagService {
@@ -18,4 +19,10 @@ export class TagService {
         return await TagModel.create({userId, fieldId, term, value, color})
     }
 
+    async deleteTag(userId, fieldId) {
+        if (!userId || !fieldId) {
+            throw new BadRequestException('Указаны не все поля')
+        }
+        await TagModel.destroy({where: {userId, fieldId}})
+    }
 }
