@@ -1,16 +1,10 @@
-import {BelongsTo, Column, DataType, ForeignKey, Model, Table, HasOne, HasMany} from "sequelize-typescript";
+import { Column, DataType, Model, Table, HasMany} from "sequelize-typescript";
 
 import {ApiProperty} from "@nestjs/swagger";
 import {TermModel} from "../term/term.model";
+import {IType} from "./type.interface";
 
-interface IType {
-    userId: number;
-    fieldId: number;
-    isFill: boolean;
-    status: number;
-    pipeline: number;
-    type: string;
-}
+
 
 @Table({tableName: 'types'})
 export class TypeModel extends Model<TypeModel, IType> {

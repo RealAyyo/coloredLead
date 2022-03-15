@@ -1,20 +1,11 @@
 import {BelongsTo, Column, DataType, ForeignKey, Model, Table} from "sequelize-typescript";
 import {ApiProperty} from "@nestjs/swagger";
 import {TypeModel} from "../type/type.model";
-
-interface ITerm {
-    typeId: number;
-    selectFieldId: number;
-    name: string;
-    value: string;
-    color: string;
-}
+import {ITerm} from "./term.interface";
 
 @Table({tableName: 'terms'})
 export class TermModel extends Model<TermModel, ITerm> {
 
-
-    @ApiProperty({example: '1', description: 'Уникальный идентификатор'})
     @Column({type: DataType.INTEGER, autoIncrement: true, unique: true, primaryKey: true})
     id: number;
 
