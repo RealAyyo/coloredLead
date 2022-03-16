@@ -7,9 +7,8 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const config = new DocumentBuilder()
       .setVersion('1.0.0')
-      .setTitle('ColoredLeads')
-      .setDescription('REST API Documentation')
-      .addTag('ColoredLeads')
+      .setTitle('Цветные сделки')
+      .setDescription('REST API документация виджета "Цветные сделки"')
       .build()
 
   const document = SwaggerModule.createDocument(app, config)
@@ -21,7 +20,7 @@ async function bootstrap() {
     credentials: true,
   });
 
-  await app.listen(5000, () => console.log(`Сервер запущен на ${5000} порту`));
+  await app.listen(process.env.PORT, () => console.log(`Сервер запущен на ${process.env.PORT} порту`));
 }
 
 bootstrap();
